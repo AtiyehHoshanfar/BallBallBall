@@ -14,30 +14,30 @@ public class DragController : MonoBehaviour
 
     [Header("Sprites")]
     public SpriteRenderer ballRenderer;
-    public Sprite firstBallSprite;       // توپ اولیه
-    public Sprite newBallSprite;         // توپ مرحله 1
-    public Sprite secondBallSprite;      // توپ مرحله 2
+    public Sprite firstBallSprite;       
+    public Sprite newBallSprite;        
+    public Sprite secondBallSprite;     
 
     public SpriteRenderer backgroundRenderer;
-    public Sprite firstBackgroundSprite; // بک‌گراند اولیه
-    public Sprite newBackgroundSprite;   // بک‌گراند مرحله 1
-    public Sprite secondBackgroundSprite;// بک‌گراند مرحله 2
+    public Sprite firstBackgroundSprite; 
+    public Sprite newBackgroundSprite;  
+    public Sprite secondBackgroundSprite;
 
     [Header("Lives & Hearts")]
-    public int lives = 3;                // تعداد جون‌ها
+    public int lives = 3;              
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
 
     [Header("Music")]
-    public AudioSource audioSource;   // منبع پخش موزیک
-    public AudioClip firstMusic;      // موزیک مرحله 0
-    public AudioClip newMusic;        // موزیک مرحله 1
-    public AudioClip secondMusic;     // موزیک مرحله 2
+    public AudioSource audioSource;  
+    public AudioClip firstMusic;     
+    public AudioClip newMusic;        
+    public AudioClip secondMusic;     
 
     private Camera cam;
     private bool isDragging;
-    private int stage = 0; // مرحله بازی
+    private int stage = 0; 
     private int dragCount = 0;
 
     Vector3 MousePosition
@@ -54,14 +54,14 @@ public class DragController : MonoBehaviour
     {
         cam = Camera.main;
 
-        // مقداردهی اولیه توپ و بک‌گراند
+ 
         if (ballRenderer != null && firstBallSprite != null)
             ballRenderer.sprite = firstBallSprite;
 
         if (backgroundRenderer != null && firstBackgroundSprite != null)
             backgroundRenderer.sprite = firstBackgroundSprite;
 
-        // تنظیم خط
+
         if (line != null)
         {
             line.positionCount = 2;
@@ -70,7 +70,7 @@ public class DragController : MonoBehaviour
             line.enabled = false;
         }
 
-        // موزیک اولیه
+
         if (audioSource != null && firstMusic != null)
         {
             audioSource.clip = firstMusic;
@@ -136,13 +136,13 @@ public class DragController : MonoBehaviour
         if (dragCounterText != null)
             dragCounterText.text = "" + dragCount;
 
-        // مرحله 1: بعد از 20 درگ
+
         if (stage == 0 && dragCount >= 20)
         {
             stage = 1;
             ChangeStage(newBallSprite, newBackgroundSprite, newMusic);
         }
-        // مرحله 2: بعد از 40 درگ
+
         else if (stage == 1 && dragCount >= 40)
         {
             stage = 2;
@@ -174,10 +174,10 @@ public class DragController : MonoBehaviour
         if (heart3 != null) heart3.SetActive(lives >= 3);
     }
 
-    // برخورد با زمین (DeathZone)
+
 void OnTriggerEnter2D(Collider2D other)
 {
-    // این خط فقط برای تسته
+
     Debug.Log("Collision with: " + other.name);
 Debug.Log("Triggered with: " + other.name);
     if (other.CompareTag("DeathZone"))
@@ -189,11 +189,11 @@ Debug.Log("Triggered with: " + other.name);
         if (lives <= 0)
         {
             Debug.Log("Game Over!");
-            // نمایش پنل Game Over یا ریست صحنه
+
         }
         else
         {
-            // ریست توپ به موقعیت شروع
+
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0f;
             transform.position = Vector3.zero;

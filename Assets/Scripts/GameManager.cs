@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro; // برای TMP_Text
+using TMPro; 
 
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverPanel;
-    public TMP_Text dragCountText;  // جایی که مقدار درگ‌ها نمایش داده میشه
+    public TMP_Text dragCountText;  
     private bool isPanelActive = false;
 
-    private int dragCount = 0; // شمارش درگ‌ها
+    private int dragCount = 0;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
             Time.timeScale = isPanelActive ? 0f : 1f;
 
-            // وقتی پنل فعال میشه مقدار درگ‌ها رو نشون بده
+
             if (isPanelActive && dragCountText != null)
             {
                 dragCountText.text = "Total Drags: " + dragCount.ToString();
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // این تابع رو هرجا درگ اتفاق میفته صدا بزن
+
     public void RegisterDrag()
     {
         dragCount++;
